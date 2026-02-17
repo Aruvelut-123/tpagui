@@ -1,0 +1,48 @@
+name: Build for release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'microsoft'
+          cache: 'maven'
+      - name: Make Gradle Runnable
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew jar
+      - name: Upload Artifact to Release
+        uses: softprops/action-gh-release@v2.2.2
+        with:
+          files: |
+            build/libs/*.jar
+  changelog:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout all
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install git-cliff
+        uses: taiki-e/install-action@git-cliff
+
+      - name: Generate changelog
+        run: git-cliff >> CHANGELOG.md
+
+      - name: Add changelog to release
+        uses: softprops/action-gh-release@v2.2.2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
