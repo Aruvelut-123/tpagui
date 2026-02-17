@@ -1,0 +1,10 @@
+lang:
+  version: 1
+tpagui:
+  loaded: "Tpagui 已启用"
+  disable: "Tpagui 已禁用"
+  reloaded: "&a配置和语言文件已重载"
+  reloadFailed: "&4配置或语言文件重载失败，具体请查阅控制台"
+  commandRegistered: "命令已注册"
+  noPermission: "&4你没有权限去执行这条命令"
+  playerOnly: "此命令仅能被玩家执行！"

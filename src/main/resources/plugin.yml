@@ -1,4 +1,20 @@
 name: tpagui
-version: '1.0.0'
+version: '1.0-SNAPSHOT'
 main: com.baymaxawa.tpagui.Tpagui
 api-version: '1.21'
+commands:
+  tpagui:
+    description: Main command of the plugin
+    usage: /<command> [args]
+    aliases:
+      - tpag
+      - tgui
+    permission: tpagui.use
+
+permissions:
+  tpagui.use:
+    description: The permission needed for using tpagui
+    default: true
+  tpagui.reload:
+    description: The permission needed for reload tpagui configurations
+    default: op
