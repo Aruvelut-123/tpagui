@@ -4,12 +4,14 @@ on:
   push:
     branches: [ "main" ]
     paths-ignore:
-      - .github/*
+      - .github/workflows/build-push-pr.yml
+      - .github/workflows/build-for-release.yml
       - README.md
   pull_request:
     branches: [ "main" ]
     paths-ignore:
-      - .github/*
+      - .github/workflows/build-push-pr.yml
+      - .github/workflows/build-for-release.yml
       - README.md
   workflow_dispatch:
 
