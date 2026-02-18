@@ -25,10 +25,11 @@ public class UIManager {
                 plugin.lm.getLangString(
                         "tpagui.title", String.valueOf(page + 1)));
         List<Object> players = new ArrayList<>();
-        if (plugin.cm.getBool("settings.integrate.huskhomes")) {
-
+        if (plugin.cm.getBool("settings.velocity.enabled")) {
+            NetworkHandler.sendGetPlayerListMessage(player);
+            players = NetworkHandler.getPlayerList();
         } else {
-            for (Player p : Bukkit.getOnlinePlayers()) { //TODO: Velocity Support
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 if (!p.getUniqueId().equals(player.getUniqueId())) players.add(p);
             }
         }
@@ -41,6 +42,9 @@ public class UIManager {
             Object target = players.get(i);
             ItemStack skull = null;
             if (target instanceof Player) skull = getPlayerSkull((Player) target);
+            else if (target instanceof String) {
+
+            }
             if (skull != null && skull.getItemMeta() != null) {
                 inv.setItem(slotIndex, skull);
                 slotIndex++;

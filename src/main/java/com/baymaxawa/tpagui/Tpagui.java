@@ -16,9 +16,8 @@ public final class Tpagui extends JavaPlugin {
         // Plugin startup logic
         INSTANCE = this;
         logger = getLogger();
-        saveResource("config.yml", true);
-        saveResource("lang/zh_CN.yml", true);
-        // saveResource("lang/en_US.yml", false);
+        saveResource("config.yml", false);
+        saveResource("lang/zh_CN.yml", true); //TODO: Add other language embed in plugin
         cm.initConfig(this);
         lm.initLang(this, cm.config);
         if (getCommand("tpagui") != null) {
@@ -28,6 +27,8 @@ public final class Tpagui extends JavaPlugin {
         }
         getServer().getPluginManager().registerEvents(new TpaRequestListener(), this);
         getServer().getPluginManager().registerEvents(new UIListener(), this);
+        getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new NetworkHandler());
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         logger.info(lm.getLangString("tpagui.loaded"));
     }
 

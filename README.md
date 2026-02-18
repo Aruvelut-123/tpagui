@@ -2,6 +2,12 @@
 
 A simple GUI plugin for tpa commands.
 
+## Currently Supported Features
+
+- Popup UI when get tpa/tpahere request (configurable in config.yml)
+- A UI for sending tpa requests
+- Proxy Server compatibility (Not Complete yet! DO NOT ENABLE UNLESS YOU JUST WANT SEE.)
+
 ## ⚠️ Development Status
 
 **This plugin is currently under development and only provide basic functional features yet.**

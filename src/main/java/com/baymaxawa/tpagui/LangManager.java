@@ -14,6 +14,7 @@ import java.util.Objects;
 public class LangManager {
     private File langFile;
     private FileConfiguration currentLang;
+    private final Integer currentLangVersion = 2;
 
     public String getLangString(String langCode, String... args) {
         String message;
@@ -58,16 +59,20 @@ public class LangManager {
             Path langPath = Paths.get(plugin.getDataFolder().getPath()).resolve("lang");
             langFile = new File(langPath.resolve(Paths.get(config.getString("language")+".yml")).toUri());
             if (!langFile.exists()) {
-                loadFallbackLanguage(plugin, config);
+                loadFallbackLanguage(plugin);
             }
             else {
                 currentLang = YamlConfiguration.loadConfiguration(langFile);
-                if (!currentLang.contains("lang.version") || currentLang.getInt("lang.version") < 1) Tpagui.logger.warning("Unknown version of language file!");
+                if (!currentLang.contains("lang.version")) Tpagui.logger.warning("Unknown version of language file!");
+                if (currentLang.getInt("lang.version") < currentLangVersion) {
+                    Tpagui.logger.warning(getLangString("tpagui.langOutdated"));
+                }
             }
         }
     }
 
-    public void loadFallbackLanguage(Tpagui plugin, FileConfiguration config) {
+    public void loadFallbackLanguage(Tpagui plugin) {
+        Tpagui.INSTANCE.saveResource("lang/zh_CN.yml", true);
         Path langPath = Paths.get(plugin.getDataFolder().getPath()).resolve("lang");
         langFile = new File(langPath.resolve(Paths.get("zh_CN.yml")).toUri());
         if (!langFile.exists()) {
@@ -85,7 +90,7 @@ public class LangManager {
                 Path langPath = Paths.get(plugin.getDataFolder().getPath()).resolve("lang");
                 langFile = new File(langPath.resolve(Paths.get(config.getString("language")+".yml")).toUri());
                 if (!langFile.exists()) {
-                    loadFallbackLanguage(plugin, config);
+                    loadFallbackLanguage(plugin);
                 }
                 else {
                     currentLang = YamlConfiguration.loadConfiguration(langFile);

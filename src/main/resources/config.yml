@@ -1,6 +1,10 @@
-version: 1
+version: 2
 language: zh_CN
 settings:
+  velocity:
+    enabled: false
+    servers:
+      - 'lobby'
   tpa-command:
     to: 'tpa'
     here: 'tpahere'

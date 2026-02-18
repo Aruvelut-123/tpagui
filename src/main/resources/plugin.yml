@@ -2,8 +2,6 @@ name: tpagui
 version: '0.1-SNAPSHOT'
 main: com.baymaxawa.tpagui.Tpagui
 api-version: '1.21'
-softdepend:
-  - HuskHomes
 commands:
   tpagui:
     description: Main command of the plugin

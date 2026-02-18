@@ -1,5 +1,5 @@
 lang:
-  version: 1
+  version: 2
 comment: "抱歉，但我确实不太会格式化语言文件的结构，还请见谅 :("
 integrate:
   huskhomes:
@@ -32,3 +32,6 @@ tpagui:
   confirm: "&a确认"
   cancel: "&4取消"
   uiDisabled: "&4服务器已禁用此UI"
+  langOutdated: "此语言文件版本为{0}，而最新版本为{1}，请检查zh_CN.yml来对应进行更改。"
+velocity:
+  received: "从Velocity接收到子服{0}的玩家列表"
