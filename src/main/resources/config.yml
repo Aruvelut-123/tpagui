@@ -1,2 +1,19 @@
 version: 1
 language: zh_CN
+settings:
+  tpa-command:
+    to: 'tpa'
+    here: 'tpahere'
+    accept: 'tpaccept'
+    deny: 'tpdeny'
+  listening-commands:
+    - 'tpa'
+    - 'tpahere'
+  players-per-page: 45
+  forms:
+    java:
+      basic: true
+      listen: true
+    bedrock:
+      basic: true
+      listen: true

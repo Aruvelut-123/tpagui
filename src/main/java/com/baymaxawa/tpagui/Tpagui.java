@@ -1,5 +1,6 @@
 package com.baymaxawa.tpagui;
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
@@ -7,7 +8,7 @@ import java.util.logging.Logger;
 public final class Tpagui extends JavaPlugin {
     public static Logger logger;
     public static Tpagui INSTANCE;
-    private final ConfigurationManager cm = new ConfigurationManager();
+    public final ConfigurationManager cm = new ConfigurationManager();
     public final LangManager lm = new LangManager();
 
     @Override
@@ -15,7 +16,7 @@ public final class Tpagui extends JavaPlugin {
         // Plugin startup logic
         INSTANCE = this;
         logger = getLogger();
-        saveResource("config.yml", false);
+        saveResource("config.yml", true);
         saveResource("lang/zh_CN.yml", true);
         // saveResource("lang/en_US.yml", false);
         cm.initConfig(this);
@@ -25,6 +26,8 @@ public final class Tpagui extends JavaPlugin {
             getCommand("tpagui").setTabCompleter(new MyTabCompleter());
             logger.info(lm.getLangString("tpagui.commandRegistered"));
         }
+        getServer().getPluginManager().registerEvents(new TpaRequestListener(), this);
+        getServer().getPluginManager().registerEvents(new UIListener(), this);
         logger.info(lm.getLangString("tpagui.loaded"));
     }
 

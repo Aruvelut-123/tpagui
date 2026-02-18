@@ -1,5 +1,10 @@
 lang:
   version: 1
+comment: "抱歉，但我确实不太会格式化语言文件的结构，还请见谅 :("
+integrate:
+  huskhomes:
+    not-installed: "HuskHomes 支持已启用，但并未检测到 HuskHomes。正在禁用支持！"
+    enabled: "检测到 HuskHomes，支持已启用"
 tpagui:
   loaded: "Tpagui 已启用"
   disable: "Tpagui 已禁用"
@@ -8,3 +13,22 @@ tpagui:
   commandRegistered: "命令已注册"
   noPermission: "&4你没有权限去执行这条命令"
   playerOnly: "此命令仅能被玩家执行！"
+  playersPerPageLarge: "每页玩家数量最多为45人！"
+  offlineSkull: "在获取对应玩家头颅时出现问题：该玩家不在线！"
+  playerOffline: "&4该玩家不在线！"
+  skullMetaFailed: "创建头颅Meta信息失败！"
+  skullOwnerFailed: "创建玩家{0}的头颅时失败：{1}"
+  skullLore:
+    - "&e左键发送传送到对方的请求"
+    - "&e右键发送传送到此处的请求"
+  nextPage: "下一页"
+  previousPage: "上一页"
+  title: "传送菜单 - 第 {0} 页"
+  extractFailed: "从标题 \"{0}\" 中解析当前页数失败！"
+  requestTitle: "你收到了传送请求"
+  executed: "玩家 {0} 已成功执行 {1}"
+  tpaTitle: "玩家 {0} 请求传送到你这里"
+  tpaHereTitle: "玩家 {0} 请求传送到他那里"
+  confirm: "&a确认"
+  cancel: "&4取消"
+  uiDisabled: "&4服务器已禁用此UI"

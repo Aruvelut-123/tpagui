@@ -22,7 +22,8 @@ public class MyCommandExecutor implements CommandExecutor {
                     return true;
                 } else return false;
             }
-            player.sendMessage("Help message here someday :)");
+            if (Tpagui.INSTANCE.cm.getBool("settings.forms.java.basic")) player.openInventory(UIManager.createTpaMenu(player, 0));
+            else player.sendMessage(Tpagui.INSTANCE.lm.getLangString("tpagui.uiDisabled"));
         } else {
             if (args.length == 1) {
                 if (Objects.equals(args[0], "reload")) {

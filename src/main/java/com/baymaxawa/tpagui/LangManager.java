@@ -7,17 +7,50 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class LangManager {
     private File langFile;
     private FileConfiguration currentLang;
 
-    public String getLangString(String langCode) {
+    public String getLangString(String langCode, String... args) {
+        String message;
         if (!currentLang.contains(langCode)) return langCode;
         else if (currentLang.getString(langCode) == null) return langCode;
         else if (Objects.equals(currentLang.getString(langCode), "")) return langCode;
-        else return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(currentLang.getString(langCode)));
+        else message = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(currentLang.getString(langCode)));
+        if (message.isEmpty()) return langCode;
+        if (args.length != 0) {
+            int i = 0;
+            for (String arg : args) {
+                message = message.replace("{"+i+"}", arg);
+                i ++;
+            }
+        }
+        return message;
+    }
+
+    public List<String> getLangStringList(String langCode, String... args) {
+        List<String> message = new ArrayList<>();
+        if (!currentLang.contains(langCode)) message.add(langCode);
+        else if (currentLang.getStringList(langCode).isEmpty()) message.add(langCode);
+        else {
+            for (String line : currentLang.getStringList(langCode)) {
+                String finalText = "";
+                if (args.length != 0) {
+                    int i = 0;
+                    for (String arg : args) {
+                        finalText = line.replace("{"+i+"}", arg);
+                        i ++;
+                    }
+                } else finalText = line;
+                if (!Objects.equals(finalText, "")) message.add(ChatColor.translateAlternateColorCodes('&', finalText));
+            }
+        }
+        if (message.isEmpty()) message.add(langCode);
+        return message;
     }
 
     public void initLang(Tpagui plugin, FileConfiguration config) {
