@@ -72,7 +72,6 @@ public class TpaRequestListener implements Listener {
             inv.setItem(24, cancelButton);
             player.openInventory(inv);
         }
-
-        Tpagui.logger.info("检测到玩家"+player.getName()+"接收到监听的命令");
+        //TODO: Bedrock support
     }
 }

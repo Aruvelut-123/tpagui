@@ -28,7 +28,7 @@ public class UIManager {
         if (plugin.cm.getBool("settings.integrate.huskhomes")) {
 
         } else {
-            for (Player p : Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) { //TODO: Velocity Support
                 if (!p.getUniqueId().equals(player.getUniqueId())) players.add(p);
             }
         }
